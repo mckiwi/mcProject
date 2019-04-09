@@ -1,0 +1,3 @@
+package mcproject;
+
+@license(LGPL);

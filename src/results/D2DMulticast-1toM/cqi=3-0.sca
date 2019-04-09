@@ -1,0 +1,3863 @@
+version 2
+run D2DMulticast-1toM-0-20190410-01:43:18-30066
+attr configname D2DMulticast-1toM
+attr datetime 20190410-01:43:18
+attr experiment D2DMulticast-1toM
+attr inifile omnetpp.ini
+attr iterationvars "$numUEs=10, $cqi=3"
+attr iterationvarsf numUEs=10,cqi=3-
+attr measurement "$numUEs=10, $cqi=3"
+attr network lte.simulations.networks.SingleCell_D2DMulticast
+attr processid 30066
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+itervar cqi 3
+itervar numUEs 10
+param *.eNodeB.mobility.initFromDisplayString false
+param *.eNodeB.mobility.initialX 300m
+param *.eNodeB.mobility.initialY 300m
+param *.numUeCell 0
+param *.numUeD2D 10
+param *.ue*[*].macCellId 1
+param *.ue*[*].masterId 1
+param *.ue*[*].mobility.initFromDisplayString false
+param *.ue*[*].mobilityType "\"MassMobility\""
+param *.ue*[*].mobility.initFromDisplayString false
+param *.ue*[*].mobility.changeInterval "truncnormal(2s, 0.5s)"
+param *.ue*[*].mobility.changeAngleBy "normal(0deg, 30deg)"
+param *.ue*[*].mobility.speed "truncnormal(15mps, 5mps)"
+param *.ue*[*].mobility.initialX uniform(200m,400m)
+param *.ue*[*].mobility.initialY uniform(200m,400m)
+param *.ueD2D[*].numUdpApps 1
+param *.ueD2D[0].udpApp[*].typename "\"AlertSender\""
+param *.ueD2D[0].udpApp[*].localPort 3088+ancestorIndex(0)
+param *.ueD2D[0].udpApp[*].startTime uniform(0s,0.02s)
+param *.ueD2D[0].udpApp[*].destAddress "\"224.0.0.10\""
+param *.ueD2D[0].udpApp[*].destPort 1000
+param *.ueD2D[1..49].udpApp[*].typename "\"AlertReceiver\""
+param *.ueD2D[1..49].udpApp[*].localPort 1000
+param *.eNodeB.d2dCapable true
+param *.ueD2D[*].d2dCapable true
+param **.amcMode "\"D2D\""
+param **.usePreconfiguredTxParams true
+param **.d2dCqi 3
+param **.nic.phy.channelModel "xmldoc(\"config_channel_nofadshad.xml\")"
+param **.feedbackComputation "xmldoc(\"config_channel_nofadshad.xml\")"
+param **.routingRecorder.enabled false
+param **.channelControl.pMax 10W
+param **.channelControl.alpha 1.0
+param **.channelControl.carrierFrequency 2100e+6Hz
+param **.nic.phy.channelModel "xmldoc(\"config_channel.xml\")"
+param **.feedbackComputation "xmldoc(\"config_channel.xml\")"
+param **.mobility.constraintAreaMinZ 10m
+param **.mobility.constraintAreaMaxZ 10m
+param **.fbDelay 1
+param **.rbAllocationType "\"localized\""
+param **.deployer.numRbDl 50
+param **.deployer.numRbUl 50
+param **.numBands 50
+
+scalar SingleCell_D2DMulticast.server.networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.server.networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.server.networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.server.networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.server.networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.server.lo0.lo droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.server.lo0.lo droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.lo0.lo rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.server.lo0.lo rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.lo0.lo passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.server.lo0.lo passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+statistic SingleCell_D2DMulticast.server.ppp[0].queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev -nan
+field min -nan
+field max -nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr title "queueing time, histogram"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar SingleCell_D2DMulticast.server.ppp[0].queue dropPk:count 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, count"
+scalar SingleCell_D2DMulticast.server.ppp[0].queue dropPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.ppp[0].queue queueLength:max 0
+attr interpolationmode sample-hold
+attr title "queue length, max"
+scalar SingleCell_D2DMulticast.server.ppp[0].queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr title "queue length, timeavg"
+scalar SingleCell_D2DMulticast.server.ppp[0].queue rcvdPk:count 0
+attr interpolationmode none
+attr title "received packets, count"
+scalar SingleCell_D2DMulticast.server.ppp[0].queue rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr title "received packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp txState:timeavg 0
+attr interpolationmode sample-hold
+attr title "tx state, timeavg"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp droppedPkIfaceDown:count 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, count"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp droppedPkIfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp rxPkOk:count 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp txPk:count 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.server.ppp[0].ppp passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.router.networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.router.networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.router.networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.router.networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.router.lo0.lo droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.router.lo0.lo droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.lo0.lo rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.router.lo0.lo rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.lo0.lo passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.router.lo0.lo passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+statistic SingleCell_D2DMulticast.router.ppp[0].queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev -nan
+field min -nan
+field max -nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr title "queueing time, histogram"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar SingleCell_D2DMulticast.router.ppp[0].queue dropPk:count 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, count"
+scalar SingleCell_D2DMulticast.router.ppp[0].queue dropPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[0].queue queueLength:max 0
+attr interpolationmode sample-hold
+attr title "queue length, max"
+scalar SingleCell_D2DMulticast.router.ppp[0].queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr title "queue length, timeavg"
+scalar SingleCell_D2DMulticast.router.ppp[0].queue rcvdPk:count 0
+attr interpolationmode none
+attr title "received packets, count"
+scalar SingleCell_D2DMulticast.router.ppp[0].queue rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr title "received packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp txState:timeavg 0
+attr interpolationmode sample-hold
+attr title "tx state, timeavg"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp droppedPkIfaceDown:count 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, count"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp droppedPkIfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp rxPkOk:count 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp txPk:count 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.router.ppp[0].ppp passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+statistic SingleCell_D2DMulticast.router.ppp[1].queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev -nan
+field min -nan
+field max -nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr title "queueing time, histogram"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar SingleCell_D2DMulticast.router.ppp[1].queue dropPk:count 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, count"
+scalar SingleCell_D2DMulticast.router.ppp[1].queue dropPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[1].queue queueLength:max 0
+attr interpolationmode sample-hold
+attr title "queue length, max"
+scalar SingleCell_D2DMulticast.router.ppp[1].queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr title "queue length, timeavg"
+scalar SingleCell_D2DMulticast.router.ppp[1].queue rcvdPk:count 0
+attr interpolationmode none
+attr title "received packets, count"
+scalar SingleCell_D2DMulticast.router.ppp[1].queue rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr title "received packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp txState:timeavg 0
+attr interpolationmode sample-hold
+attr title "tx state, timeavg"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp droppedPkIfaceDown:count 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, count"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp droppedPkIfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp rxPkOk:count 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp txPk:count 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.router.ppp[1].ppp passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.pgw.networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.pgw.networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.pgw.networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.pgw.networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.pgw.lo0.lo droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.pgw.lo0.lo droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.lo0.lo rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.pgw.lo0.lo rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.lo0.lo passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.pgw.lo0.lo passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+statistic SingleCell_D2DMulticast.pgw.ppp[0].queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev -nan
+field min -nan
+field max -nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr title "queueing time, histogram"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar SingleCell_D2DMulticast.pgw.ppp[0].queue dropPk:count 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, count"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].queue dropPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].queue queueLength:max 0
+attr interpolationmode sample-hold
+attr title "queue length, max"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr title "queue length, timeavg"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].queue rcvdPk:count 0
+attr interpolationmode none
+attr title "received packets, count"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].queue rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr title "received packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp txState:timeavg 0
+attr interpolationmode sample-hold
+attr title "tx state, timeavg"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp droppedPkIfaceDown:count 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, count"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp droppedPkIfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp rxPkOk:count 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp txPk:count 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.pgw.ppp[0].ppp passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+statistic SingleCell_D2DMulticast.pgw.pppInterface.queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev -nan
+field min -nan
+field max -nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr title "queueing time, histogram"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar SingleCell_D2DMulticast.pgw.pppInterface.queue dropPk:count 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, count"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.queue dropPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.queue queueLength:max 0
+attr interpolationmode sample-hold
+attr title "queue length, max"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr title "queue length, timeavg"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.queue rcvdPk:count 0
+attr interpolationmode none
+attr title "received packets, count"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.queue rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr title "received packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp txState:timeavg 0
+attr interpolationmode sample-hold
+attr title "tx state, timeavg"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp droppedPkIfaceDown:count 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, count"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp droppedPkIfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp rxPkOk:count 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp txPk:count 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.pgw.pppInterface.ppp passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.pgw.udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.pgw.udp passedUpPk:count 0
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.pgw.udp rcvdPk:count 0
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.pgw.udp rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.pgw.udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.pgw.udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.pdcpRrc sentPacketToUpperLayer:count 0
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.pdcpRrc receivedPacketFromLowerLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.rlc.um rlcCellPacketLossDl:lteAvg 0.33155472553858
+attr source rlcCellPacketLossDl
+attr title "rlc Cell Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.rlc.um rlcCellThroughputDl:lteRate 1733.0873908667
+attr source rlcCellThroughputDl
+attr title "Cell Throughput at the rlc layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 4.6532680694847
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 10.241626985183
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 10.658881115161
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 7.996541725413
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 4.2425580591099
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 5.0008246654784
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 5.8336037881408
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 4.3355324412758
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 3.7824479263654
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo4:lteAvg 4.7524141416828
+attr source cqiDlMuMimo4
+attr title "Average cqi MuMimo band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 4.6532680694847
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 10.241626985183
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 10.658881115161
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 7.996541725413
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 4.2425580591099
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 5.0008246654784
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 5.8336037881408
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 4.3355324412758
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 3.7824479263654
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo3:lteAvg 4.7524141416828
+attr source cqiDlMuMimo3
+attr title "Average cqi MuMimo band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 4.6532680694847
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 10.241626985183
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 10.658881115161
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 7.996541725413
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 4.2425580591099
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 5.0008246654784
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 5.8336037881408
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 4.3355324412758
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 3.7824479263654
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo2:lteAvg 4.7524141416828
+attr source cqiDlMuMimo2
+attr title "Average cqi MuMimo band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 4.6532680694847
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 10.241626985183
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 10.658881115161
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 7.996541725413
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 4.2425580591099
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 5.0008246654784
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 5.8336037881408
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 4.3355324412758
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 3.7824479263654
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo1:lteAvg 4.7524141416828
+attr source cqiDlMuMimo1
+attr title "Average cqi MuMimo band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 4.6532680694847
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 10.241626985183
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 10.658881115161
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 7.996541725413
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 4.2425580591099
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 5.0008246654784
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 5.8336037881408
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 4.3355324412758
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 3.7824479263654
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlMuMimo0:lteAvg 4.7524141416828
+attr source cqiDlMuMimo0
+attr title "Average cqi MuMimo band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 9.7315314835998
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 14.478838019739
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 14.167061264664
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 13.653826713841
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 9.0761352451385
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 8.4581947806656
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 11.201697214759
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 8.9525152297092
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 6.2109015455827
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv4:lteAvg 9.3593147295895
+attr source cqiDlTxDiv4
+attr title "Average cqi TxDiv band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 9.7315314835998
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 14.478838019739
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 14.167061264664
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 13.653826713841
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 9.0761352451385
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 8.4581947806656
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 11.201697214759
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 8.9525152297092
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 6.2109015455827
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv3:lteAvg 9.3593147295895
+attr source cqiDlTxDiv3
+attr title "Average cqi TxDiv band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 9.7315314835998
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 14.478838019739
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 14.167061264664
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 13.653826713841
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 9.0761352451385
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 8.4581947806656
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 11.201697214759
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 8.9525152297092
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 6.2109015455827
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv2:lteAvg 9.3593147295895
+attr source cqiDlTxDiv2
+attr title "Average cqi TxDiv band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 9.7315314835998
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 14.478838019739
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 14.167061264664
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 13.653826713841
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 9.0761352451385
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 8.4581947806656
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 11.201697214759
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 8.9525152297092
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 6.2109015455827
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv1:lteAvg 9.3593147295895
+attr source cqiDlTxDiv1
+attr title "Average cqi TxDiv band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 9.7315314835998
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 14.478838019739
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 14.167061264664
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 13.653826713841
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 9.0761352451385
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 8.4581947806656
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 11.201697214759
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 8.9525152297092
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 6.2109015455827
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlTxDiv0:lteAvg 9.3593147295895
+attr source cqiDlTxDiv0
+attr title "Average cqi TxDiv band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 4.4668138650209
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 9.4586204144609
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 10.007395387194
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 7.6175946370142
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 4.0824133436195
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 4.7431832087468
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 5.3857306270118
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 4.1708919688223
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 3.6281556755606
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux4:lteAvg 4.3668697294565
+attr source cqiDlSpmux4
+attr title "Average cqi Spmux band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 4.4668138650209
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 9.4586204144609
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 10.007395387194
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 7.6175946370142
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 4.0824133436195
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 4.7431832087468
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 5.3857306270118
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 4.1708919688223
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 3.6281556755606
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux3:lteAvg 4.3668697294565
+attr source cqiDlSpmux3
+attr title "Average cqi Spmux band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 4.4668138650209
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 9.4586204144609
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 10.007395387194
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 7.6175946370142
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 4.0824133436195
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 4.7431832087468
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 5.3857306270118
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 4.1708919688223
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 3.6281556755606
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux2:lteAvg 4.3668697294565
+attr source cqiDlSpmux2
+attr title "Average cqi Spmux band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 4.4668138650209
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 9.4586204144609
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 10.007395387194
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 7.6175946370142
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 4.0824133436195
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 4.7431832087468
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 5.3857306270118
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 4.1708919688223
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 3.6281556755606
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux1:lteAvg 4.3668697294565
+attr source cqiDlSpmux1
+attr title "Average cqi Spmux band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 4.4668138650209
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 9.4586204144609
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 10.007395387194
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 7.6175946370142
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 4.0824133436195
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 4.7431832087468
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 5.3857306270118
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 4.1708919688223
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 3.6281556755606
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSpmux0:lteAvg 4.3668697294565
+attr source cqiDlSpmux0
+attr title "Average cqi Spmux band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 4.6532680694847
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 10.241626985183
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 10.658881115161
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 7.996541725413
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 4.2425580591099
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 5.0008246654784
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 5.8336037881408
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 4.3355324412758
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 3.7824479263654
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso4:lteAvg 4.7524141416828
+attr source cqiDlSiso4
+attr title "Average cqi siso band 4, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 4.6532680694847
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 10.241626985183
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 10.658881115161
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 7.996541725413
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 4.2425580591099
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 5.0008246654784
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 5.8336037881408
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 4.3355324412758
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 3.7824479263654
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso3:lteAvg 4.7524141416828
+attr source cqiDlSiso3
+attr title "Average cqi siso band 3, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 4.6532680694847
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 10.241626985183
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 10.658881115161
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 7.996541725413
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 4.2425580591099
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 5.0008246654784
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 5.8336037881408
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 4.3355324412758
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 3.7824479263654
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso2:lteAvg 4.7524141416828
+attr source cqiDlSiso2
+attr title "Average cqi siso band 2, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 4.6532680694847
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 10.241626985183
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 10.658881115161
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 7.996541725413
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 4.2425580591099
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 5.0008246654784
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 5.8336037881408
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 4.3355324412758
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 3.7824479263654
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso1:lteAvg 4.7524141416828
+attr source cqiDlSiso1
+attr title "Average cqi siso band 1, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 4.6532680694847
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 10.241626985183
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 10.658881115161
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 7.996541725413
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 4.2425580591099
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 5.0008246654784
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 5.8336037881408
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 4.3355324412758
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 3.7824479263654
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cqiDlSiso0:lteAvg 4.7524141416828
+attr source cqiDlSiso0
+attr title "Average cqi siso band 0, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac depletedPowerUl:lteAvg 0
+attr source depletedPowerUl
+attr title "LTE ENodeB depleted power Ul, lteAvg"
+attr unit watts
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac depletedPowerDl:lteAvg 260
+attr source depletedPowerDl
+attr title "LTE ENodeB depleted power Dl, lteAvg"
+attr unit watts
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac avgServedBlocksUl:lteAvg 1.1428964122936
+attr source avgServedBlocksUl
+attr title "LTE Avg Served Blocks Ul, lteAvg"
+attr unit blocks
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac avgServedBlocksDl:lteAvg 0
+attr source avgServedBlocksDl
+attr title "LTE Avg Served Blocks Dl, lteAvg"
+attr unit blocks
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cellBlocksUtilizationUl:lteAvg 0.022857928245872
+attr source cellBlocksUtilizationUl
+attr title "LTE Cell Blocks Utilization Ul, lteAvg"
+attr unit blocks
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac cellBlocksUtilizationDl:lteAvg 0
+attr source cellBlocksUtilizationDl
+attr title "LTE Cell Blocks Utilization Dl, lteAvg"
+attr unit blocks
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac measuredItbs:mean 6.2284269307765
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac macCellPacketLossUl:mean 0
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac macCellThroughputDl:lteRate 1910.2768182967
+attr source macCellThroughputDl
+attr title "Cell Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac macCellThroughputUl:lteRate 168.69371666231
+attr source macCellThroughputUl
+attr title "Cell Throughput at the MAC layer UL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac macThroughputUl:lteRate 168.69371666231
+attr source macThroughputUl
+attr title "Throughput at the MAC layer UL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac macDelayUl:lteAvg 0.0055307785312529
+attr source macDelayUl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac sentPacketToLowerLayer:count 90041
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac sentPacketToUpperLayer:count 0
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac sentPacketToUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac receivedPacketFromLowerLayer:count 421424
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 44658
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.eNodeB.nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac averageCqiUl:lteAvg 4.5325809485423
+attr source averageCqiUl
+attr title "Average Cqi reported in UL, lteAvg"
+attr unit cqi
+statistic SingleCell_D2DMulticast.eNodeB.pppIf.queue queueingTime:histogram
+field count 0
+field mean -nan
+field stddev -nan
+field min -nan
+field max -nan
+field sum 0
+field sqrsum 0
+attr interpolationmode none
+attr title "queueing time, histogram"
+bin	-inf	0
+bin	0	0
+bin	1	0
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.queue dropPk:count 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, count"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.queue dropPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkByQueue
+attr title "dropped packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.queue queueLength:max 0
+attr interpolationmode sample-hold
+attr title "queue length, max"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.queue queueLength:timeavg 0
+attr interpolationmode sample-hold
+attr title "queue length, timeavg"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.queue rcvdPk:count 0
+attr interpolationmode none
+attr title "received packets, count"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.queue rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr title "received packets, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp txState:timeavg 0
+attr interpolationmode sample-hold
+attr title "tx state, timeavg"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp droppedPkIfaceDown:count 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, count"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp droppedPkIfaceDown:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkIfaceDown
+attr title "packets dropped/interface down, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp droppedPkBitError:count 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, count"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp droppedPkBitError:sum(packetBytes) 0
+attr interpolationmode none
+attr source dropPkBitError
+attr title "packets dropped/bit error, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp rxPkOk:count 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, count"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp rxPkOk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp txPk:count 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, count"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp txPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp rcvdPkFromHL:count 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, count"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp rcvdPkFromHL:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp passedUpPk:count 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, count"
+scalar SingleCell_D2DMulticast.eNodeB.pppIf.ppp passedUpPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.eNodeB.networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.eNodeB.networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.eNodeB.networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.eNodeB.networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.eNodeB.udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.eNodeB.udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.eNodeB.udp passedUpPk:count 0
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.eNodeB.udp rcvdPk:count 0
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.eNodeB.udp rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.eNodeB.udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.eNodeB.udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[0].udpApp[0] alertSentMsg:sum 11278
+attr source alertSentMsg
+attr title "Alert messages sent, sum"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[0].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[0].udp passedUpPk:count 0
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[0].udp rcvdPk:count 0
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[0].udp rcvdPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[0].udp sentPk:count 11278
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[0].udp sentPk:sum(packetBytes) 203004
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.pdcpRrc sentPacketToLowerLayer:count 11278
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 439842
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.pdcpRrc sentPacketToUpperLayer:count 0
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.pdcpRrc receivedPacketFromLowerLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.pdcpRrc receivedPacketFromUpperLayer:count 11278
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 428564
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_4th_Ul:mean 0
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_3rd_Ul:mean 0.012765957446809
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_2nd_Ul:mean 0.076597131681877
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRate_1st_Ul:mean 0.16127845239973
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac harqErrorRateUl:mean 0.14805857853016
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac macPacketLossUl:mean 0
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac sentPacketToLowerLayer:count 56593
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac sentPacketToLowerLayer:sum(packetBytes) 528188
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac sentPacketToUpperLayer:count 11078
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac sentPacketToUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac receivedPacketFromLowerLayer:count 90041
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac receivedPacketFromUpperLayer:count 22356
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 901216
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[0].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[0].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[0].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[0].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[0].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[1].udpApp[0] alertRcvdMsg:sum 328
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[1].udpApp[0] alertDelay:mean 0.014917682926829
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[1].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[1].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[1].udp passedUpPk:count 328
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[1].udp rcvdPk:count 328
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[1].udp rcvdPk:sum(packetBytes) 5904
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[1].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[1].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.pdcpRrc sentPacketToUpperLayer:count 328
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 12464
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.pdcpRrc receivedPacketFromLowerLayer:count 328
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 12792
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.26530612244898
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.rlc.um rlcPacketLossTotal:lteAvg 0.26292134831461
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.rlc.um rlcPacketLossD2D:lteAvg 0.26292134831461
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.rlc.um rlcPduThroughputD2D:lteRate 59.593751524208
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.rlc.um rlcPduDelayD2D:lteAvg 0.004
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.rlc.um rlcThroughputD2D:lteRate 56.720481361433
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.rlc.um rlcDelayD2D:lteAvg 0.014917682926829
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac macThroughputDl:lteRate 62.467021686982
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac macDelayDl:lteAvg 0.004
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac sentPacketToUpperLayer:count 324
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac sentPacketToUpperLayer:sum(packetBytes) 13440
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac receivedPacketFromLowerLayer:count 10875
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 474801
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[1].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[1].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[1].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[1].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[1].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[1].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[2].udpApp[0] alertRcvdMsg:sum 1079
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[2].udpApp[0] alertDelay:mean 0.015368860055607
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[2].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[2].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[2].udp passedUpPk:count 1079
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[2].udp rcvdPk:count 1079
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[2].udp rcvdPk:sum(packetBytes) 19422
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[2].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[2].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.pdcpRrc sentPacketToUpperLayer:count 1079
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 41002
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.pdcpRrc receivedPacketFromLowerLayer:count 1079
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 42081
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.13891145410236
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.rlc.um rlcPacketLossTotal:lteAvg 0.13955342902711
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.rlc.um rlcPacketLossD2D:lteAvg 0.13955342902711
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.rlc.um rlcPduThroughputD2D:lteRate 195.98983713702
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.rlc.um rlcPduDelayD2D:lteAvg 0.004
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.rlc.um rlcThroughputD2D:lteRate 186.5896322835
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.rlc.um rlcDelayD2D:lteAvg 0.015368860055607
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac macThroughputDl:lteRate 205.39004199054
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac macDelayDl:lteAvg 0.004
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac sentPacketToUpperLayer:count 1060
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac sentPacketToUpperLayer:sum(packetBytes) 44201
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac receivedPacketFromLowerLayer:count 10866
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 474414
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[2].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[2].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[2].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[2].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[2].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[2].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[3].udpApp[0] alertRcvdMsg:sum 390
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[3].udpApp[0] alertDelay:mean 0.014771794871795
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[3].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[3].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[3].udp passedUpPk:count 390
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[3].udp rcvdPk:count 390
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[3].udp rcvdPk:sum(packetBytes) 7020
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[3].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[3].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.pdcpRrc sentPacketToUpperLayer:count 390
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 14820
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.pdcpRrc receivedPacketFromLowerLayer:count 390
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 15210
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.18393234672304
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.rlc.um rlcPacketLossTotal:lteAvg 0.18238993710692
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.rlc.um rlcPacketLossD2D:lteAvg 0.18238993710692
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.rlc.um rlcPduThroughputD2D:lteRate 70.865129230646
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.rlc.um rlcPduDelayD2D:lteAvg 0.004
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.rlc.um rlcThroughputD2D:lteRate 67.442035765119
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.rlc.um rlcDelayD2D:lteAvg 0.014771794871795
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac macThroughputDl:lteRate 74.288222696174
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac macDelayDl:lteAvg 0.004
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac sentPacketToUpperLayer:count 386
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac sentPacketToUpperLayer:sum(packetBytes) 15982
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac receivedPacketFromLowerLayer:count 10866
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 474258
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[3].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[3].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[3].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[3].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[3].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[3].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[4].udpApp[0] alertRcvdMsg:sum 821
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[4].udpApp[0] alertDelay:mean 0.014366626065773
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[4].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[4].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[4].udp passedUpPk:count 821
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[4].udp rcvdPk:count 821
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[4].udp rcvdPk:sum(packetBytes) 14778
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[4].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[4].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.pdcpRrc sentPacketToUpperLayer:count 821
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 31198
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.pdcpRrc receivedPacketFromLowerLayer:count 821
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 32019
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.16343207354443
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.rlc.um rlcPacketLossTotal:lteAvg 0.17404426559356
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.rlc.um rlcPacketLossD2D:lteAvg 0.17404426559356
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.rlc.um rlcPduThroughputD2D:lteRate 149.42335064094
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.rlc.um rlcPduDelayD2D:lteAvg 0.004
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.rlc.um rlcThroughputD2D:lteRate 141.97413170042
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.rlc.um rlcDelayD2D:lteAvg 0.014366626065773
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac macThroughputDl:lteRate 156.68633910796
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac macDelayDl:lteAvg 0.004
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac sentPacketToUpperLayer:count 819
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac sentPacketToUpperLayer:sum(packetBytes) 33699
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac receivedPacketFromLowerLayer:count 10850
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 473419
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[4].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[4].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[4].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[4].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[4].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[4].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[5].udpApp[0] alertRcvdMsg:sum 545
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[5].udpApp[0] alertDelay:mean 0.014552293577982
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[5].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[5].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[5].udp passedUpPk:count 545
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[5].udp rcvdPk:count 545
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[5].udp rcvdPk:sum(packetBytes) 9810
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[5].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[5].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.pdcpRrc sentPacketToUpperLayer:count 545
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 20710
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.pdcpRrc receivedPacketFromLowerLayer:count 545
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 21255
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.18154311649017
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.rlc.um rlcPacketLossTotal:lteAvg 0.18535127055306
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.rlc.um rlcPacketLossD2D:lteAvg 0.18535127055306
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.rlc.um rlcPduThroughputD2D:lteRate 99.043573496743
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.rlc.um rlcPduDelayD2D:lteAvg 0.004
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.rlc.um rlcThroughputD2D:lteRate 94.245921774333
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.rlc.um rlcDelayD2D:lteAvg 0.014552293577982
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac macThroughputDl:lteRate 103.84122521915
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac macDelayDl:lteAvg 0.004
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac sentPacketToUpperLayer:count 541
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac sentPacketToUpperLayer:sum(packetBytes) 22337
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac receivedPacketFromLowerLayer:count 10893
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 475575
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[5].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[5].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[5].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[5].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[5].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[5].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[6].udpApp[0] alertRcvdMsg:sum 1801
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[6].udpApp[0] alertDelay:mean 0.01511215991116
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[6].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[6].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[6].udp passedUpPk:count 1801
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[6].udp rcvdPk:count 1801
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[6].udp rcvdPk:sum(packetBytes) 32418
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[6].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[6].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.pdcpRrc sentPacketToUpperLayer:count 1801
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 68438
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.pdcpRrc receivedPacketFromLowerLayer:count 1801
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 70239
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.32511380880121
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.rlc.um rlcPacketLossTotal:lteAvg 0.32672897196262
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.rlc.um rlcPacketLossD2D:lteAvg 0.32672897196262
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.rlc.um rlcPduThroughputD2D:lteRate 327.38873837722
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.rlc.um rlcPduDelayD2D:lteAvg 0.0039999999999998
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.rlc.um rlcThroughputD2D:lteRate 311.44386259738
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.rlc.um rlcDelayD2D:lteAvg 0.01511215991116
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac macThroughputDl:lteRate 343.16511991912
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac macDelayDl:lteAvg 0.0039999999999998
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac sentPacketToUpperLayer:count 1779
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac sentPacketToUpperLayer:sum(packetBytes) 73835
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac receivedPacketFromLowerLayer:count 10884
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 475032
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[6].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[6].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[6].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[6].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[6].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[6].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[7].udpApp[0] alertRcvdMsg:sum 4538
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[7].udpApp[0] alertDelay:mean 0.01536535918907
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[7].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[7].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[7].udp passedUpPk:count 4538
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[7].udp rcvdPk:count 4538
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[7].udp rcvdPk:sum(packetBytes) 81684
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[7].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[7].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.pdcpRrc sentPacketToUpperLayer:count 4538
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 172444
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.pdcpRrc receivedPacketFromLowerLayer:count 4538
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 176982
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.39244975556763
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.rlc.um rlcPacketLossTotal:lteAvg 0.39420638099052
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.rlc.um rlcPacketLossD2D:lteAvg 0.39420638099052
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.rlc.um rlcPduThroughputD2D:lteRate 825.75922173398
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.rlc.um rlcPduDelayD2D:lteAvg 0.0039999999999998
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.rlc.um rlcThroughputD2D:lteRate 784.74861103105
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.rlc.um rlcDelayD2D:lteAvg 0.01536535918907
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac macThroughputDl:lteRate 865.43518071007
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac macDelayDl:lteAvg 0.0039999999999998
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac sentPacketToUpperLayer:count 4474
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac sentPacketToUpperLayer:sum(packetBytes) 186231
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac receivedPacketFromLowerLayer:count 10913
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 476279
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[7].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[7].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[7].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[7].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[7].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[7].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[8].udpApp[0] alertRcvdMsg:sum 376
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[8].udpApp[0] alertDelay:mean 0.014800531914894
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[8].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[8].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[8].udp passedUpPk:count 376
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[8].udp rcvdPk:count 376
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[8].udp rcvdPk:sum(packetBytes) 6768
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[8].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[8].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.pdcpRrc sentPacketToUpperLayer:count 376
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 14288
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.pdcpRrc receivedPacketFromLowerLayer:count 376
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 14664
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.47234042553191
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.rlc.um rlcPacketLossTotal:lteAvg 0.4726507713885
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.rlc.um rlcPacketLossD2D:lteAvg 0.4726507713885
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.rlc.um rlcPduThroughputD2D:lteRate 68.319979425967
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.rlc.um rlcPduDelayD2D:lteAvg 0.004
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.rlc.um rlcThroughputD2D:lteRate 65.021039609448
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.rlc.um rlcDelayD2D:lteAvg 0.014800531914894
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac macThroughputDl:lteRate 71.618919242485
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac macDelayDl:lteAvg 0.004
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac sentPacketToUpperLayer:count 372
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac sentPacketToUpperLayer:sum(packetBytes) 15408
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac receivedPacketFromLowerLayer:count 10866
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 474302
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[8].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[8].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[8].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[8].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[8].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[8].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[9].udpApp[0] alertRcvdMsg:sum 144
+attr source alertRcvdMsg
+attr title "Alert Messages Received, sum"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[9].udpApp[0] alertDelay:mean 0.016090277777778
+attr source alertDelay
+attr title "Alert Message Delay, mean"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[9].udp droppedPkBadChecksum:count 0
+attr interpolationmode none
+attr title "packets dropped (checksum error), count"
+scalar SingleCell_D2DMulticast.ueD2D[9].udp droppedPkWrongPort:count 0
+attr interpolationmode none
+attr title "packets dropped (wrong port), count"
+scalar SingleCell_D2DMulticast.ueD2D[9].udp passedUpPk:count 144
+attr interpolationmode none
+attr title "packets passed up, count"
+scalar SingleCell_D2DMulticast.ueD2D[9].udp rcvdPk:count 144
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, count"
+scalar SingleCell_D2DMulticast.ueD2D[9].udp rcvdPk:sum(packetBytes) 2592
+attr interpolationmode none
+attr source rcvdPk
+attr title "packets received, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[9].udp sentPk:count 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[9].udp sentPk:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPk
+attr title "packets sent, sum(packetBytes)"
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.pdcpRrc sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.pdcpRrc sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.pdcpRrc sentPacketToUpperLayer:count 144
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.pdcpRrc sentPacketToUpperLayer:sum(packetBytes) 5472
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.pdcpRrc receivedPacketFromLowerLayer:count 144
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.pdcpRrc receivedPacketFromLowerLayer:sum(packetBytes) 5616
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.pdcpRrc receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.pdcpRrc receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.rlc.um rlcPduPacketLossD2D:lteAvg 0.48339483394834
+attr source rlcPduPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.rlc.um rlcPacketLossTotal:lteAvg 0.47636363636364
+attr source rlcPacketLossTotal
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.rlc.um rlcPacketLossD2D:lteAvg 0.47636363636364
+attr source rlcPacketLossD2D
+attr title "rlc Packet Loss, lteAvg"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.rlc.um rlcPduThroughputD2D:lteRate 26.143211234132
+attr source rlcPduThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.rlc.um rlcPduDelayD2D:lteAvg 0.004
+attr source rlcPduDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.rlc.um rlcThroughputD2D:lteRate 24.901674744044
+attr source rlcThroughputD2D
+attr title "Throughput at the rlc layer D2D, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.rlc.um rlcDelayD2D:lteAvg 0.016090277777778
+attr source rlcDelayD2D
+attr title "Delay at the rlc layer D2D, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac measuredItbs:mean -nan
+attr source measuredItbs
+attr title "TBS index, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_4th_D2D:mean -nan
+attr source harqErrorRate_4th_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_4th_Dl:mean -nan
+attr source harqErrorRate_4th_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_4th_Ul:mean -nan
+attr source harqErrorRate_4th_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_3rd_D2D:mean -nan
+attr source harqErrorRate_3rd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_3rd_Dl:mean -nan
+attr source harqErrorRate_3rd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_3rd_Ul:mean -nan
+attr source harqErrorRate_3rd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_2nd_D2D:mean -nan
+attr source harqErrorRate_2nd_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_2nd_Dl:mean -nan
+attr source harqErrorRate_2nd_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_2nd_Ul:mean -nan
+attr source harqErrorRate_2nd_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_1st_D2D:mean -nan
+attr source harqErrorRate_1st_D2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_1st_Dl:mean -nan
+attr source harqErrorRate_1st_Dl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRate_1st_Ul:mean -nan
+attr source harqErrorRate_1st_Ul
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRateD2D:mean -nan
+attr source harqErrorRateD2D
+attr title "Harq Error Rate D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRateDl:mean -nan
+attr source harqErrorRateDl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac harqErrorRateUl:mean -nan
+attr source harqErrorRateUl
+attr title "Harq Error Rate Dl, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac macPacketLossD2D:mean -nan
+attr source macPacketLossD2D
+attr title "Mac Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac macPacketLossDl:mean -nan
+attr source macPacketLossDl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac macPacketLossUl:mean -nan
+attr source macPacketLossUl
+attr title "Mac Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac macCellPacketLossD2D:mean -nan
+attr source macCellPacketLossD2D
+attr title "Mac Cell Packet Loss D2D, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac macCellPacketLossUl:mean -nan
+attr source macCellPacketLossUl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac macCellPacketLossDl:mean -nan
+attr source macCellPacketLossDl
+attr title "Mac Cell Packet Loss, mean"
+attr unit ""
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac macThroughputDl:lteRate 27.384747724219
+attr source macThroughputDl
+attr title "Throughput at the MAC layer DL, lteRate"
+attr unit Bps
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac macDelayDl:lteAvg 0.004
+attr source macDelayDl
+attr title "Delay at the MAC layer UL, lteAvg"
+attr unit s
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac sentPacketToLowerLayer:count 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac sentPacketToLowerLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source sentPacketToLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac sentPacketToUpperLayer:count 140
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac sentPacketToUpperLayer:sum(packetBytes) 5896
+attr interpolationmode none
+attr source sentPacketToUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac receivedPacketFromLowerLayer:count 10874
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac receivedPacketFromLowerLayer:sum(packetBytes) 474485
+attr interpolationmode none
+attr source receivedPacketFromLowerLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac receivedPacketFromUpperLayer:count 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac receivedPacketFromUpperLayer:sum(packetBytes) 0
+attr interpolationmode none
+attr source receivedPacketFromUpperLayer
+scalar SingleCell_D2DMulticast.ueD2D[9].nic.mac averageCqiD2D:lteAvg 3
+attr source averageCqiD2D
+attr title "Average Cqi reported in D2D, lteAvg"
+attr unit cqi
+scalar SingleCell_D2DMulticast.ueD2D[9].networkLayer.arp failedARPResolution:count 0
+attr title "ARP failed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[9].networkLayer.arp completedARPResolution:count 0
+attr title "ARP completed resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[9].networkLayer.arp initiatedARPResolution:count 0
+attr title "ARP initiated resolutions, count"
+scalar SingleCell_D2DMulticast.ueD2D[9].networkLayer.arp sentReply:count 0
+attr title "ARP replies sent, count"
+scalar SingleCell_D2DMulticast.ueD2D[9].networkLayer.arp sentReq:count 0
+attr title "ARP request sent, count"
+
